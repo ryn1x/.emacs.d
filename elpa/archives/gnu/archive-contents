@@ -987,10 +987,11 @@
 	  ((:keywords "extensions")
 	   (:url . "https://github.com/cute-jumper/parsec.el"))])
  (peg .
-      [(0 7)
-       nil "Parsing Expression Grammars in Emacs Lisp" single
-       ((:url . "http://elpa.gnu.org/packages/peg.html")
-	(:keywords))])
+      [(0 8)
+       ((emacs
+	 (25)))
+       "Parsing Expression Grammars in Emacs Lisp" tar
+       ((:url . "http://elpa.gnu.org/packages/peg.html"))])
  (pinentry .
 	   [(0 1)
 	    nil "GnuPG Pinentry server implementation" single
@@ -1391,7 +1392,7 @@
 	   ((:url . "http://elpa.gnu.org/packages/wpuzzle.html")
 	    (:keywords))])
  (xclip .
-	[(1 7)
+	[(1 8)
 	 nil "Copy&paste GUI clipboard from text terminal" single
 	 ((:url . "http://elpa.gnu.org/packages/xclip.html")
 	  (:keywords "convenience" "tools"))])
