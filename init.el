@@ -12,7 +12,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (toml-mode flycheck-perl6 perl6-mode flycheck-rust racer rust-mode company))))
+    (cargo toml-mode flycheck-perl6 perl6-mode flycheck-rust racer rust-mode company))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -43,4 +43,6 @@
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 (show-paren-mode 1)
+
+(add-hook 'rust-mode-hook 'cargo-minor-mode)
 
