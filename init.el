@@ -21,45 +21,42 @@
  ;; If there is more than one, they won't work right.
  )
 
-
+;; rustfmt on save
 (setq rust-format-on-save t)
 
+;; C-y, C-w, M-w work with OS clipboard
 (setq x-select-enable-clipboard t)
 
+;; rust autocomplete stuff
 (add-hook 'rust-mode-hook #'racer-mode)
 (add-hook 'racer-mode-hook #'eldoc-mode)
 (add-hook 'racer-mode-hook #'company-mode)
-
 (require 'rust-mode)
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
 (setq company-tooltip-align-annotations t)
 
+;; utf-8... probably not needed
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 
+;; linter
 (global-flycheck-mode)
-
 (with-eval-after-load 'rust-mode
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
+;; highlight matching brackets
 (show-paren-mode 1)
 
+;; cargo mode, M-x cargo-...
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
 
-;;
 ;; ace jump mode major function
-;; 
 (autoload
   'ace-jump-mode
   "ace-jump-mode"
   "Emacs quick move minor mode"
   t)
-;; you can select the key you prefer to
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-
-;; 
-;; enable a more powerful jump back function from ace jump mode
-;;
 (autoload
   'ace-jump-mode-pop-mark
   "ace-jump-mode"
@@ -69,5 +66,5 @@
   '(ace-jump-mode-enable-mark-sync))
 (define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
 
+;; rainbow delims in programming files
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-
