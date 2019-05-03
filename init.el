@@ -33,7 +33,7 @@
 (add-hook 'racer-mode-hook #'eldoc-mode)
 (add-hook 'racer-mode-hook #'company-mode)
 (require 'rust-mode)
-(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+(define-key rust-mode-map (kbd "<C-tab>") #'company-indent-or-complete-common)
 (setq company-tooltip-align-annotations t)
 
 ;; utf-8... probably not needed
