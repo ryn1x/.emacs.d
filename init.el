@@ -79,3 +79,5 @@
 
 ;; default tab width
 (setq tab-width 4)
+(setq default-tab-width 4)
+
