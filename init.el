@@ -72,3 +72,7 @@
 
 ;; colunm numbers
 (column-number-mode)
+
+;; c style
+(setq c-default-style "stroustrup"
+      c-basic-offset 4)
