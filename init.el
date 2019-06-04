@@ -76,3 +76,6 @@
 ;; c style
 (setq c-default-style "stroustrup"
       c-basic-offset 4)
+
+;; default tab width
+(setq tab-width 4)
