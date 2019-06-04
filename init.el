@@ -69,3 +69,6 @@
 
 ;; rainbow delims in programming files
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
+;; colunm numbers
+(column-number-mode)
