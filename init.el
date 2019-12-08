@@ -167,3 +167,6 @@
 
 ;; whitespace cleanup on save
 (add-hook 'before-save-hook 'whitespace-cleanup)
+
+;; window size
+(if (window-system) (set-frame-size (selected-frame) 120 40))
