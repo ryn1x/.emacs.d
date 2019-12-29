@@ -54,7 +54,7 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (fish-mode dracula-theme solarized-theme rainbow-delimiters ace-jump-mode cargo toml-mode flycheck-perl6 perl6-mode flycheck-rust racer rust-mode company)))
+    (ripgrep fish-mode dracula-theme solarized-theme rainbow-delimiters ace-jump-mode cargo toml-mode flycheck-perl6 perl6-mode flycheck-rust racer rust-mode company)))
  '(pos-tip-background-color "#eee8d5")
  '(pos-tip-foreground-color "#586e75")
  '(show-paren-mode t)
