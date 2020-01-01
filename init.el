@@ -150,6 +150,9 @@
 ;; colunm numbers
 (column-number-mode)
 
+;; line numbers
+(global-linum-mode 1)
+
 ;; c style
 (setq c-default-style "stroustrup"
       c-basic-offset 4)
@@ -170,3 +173,12 @@
 
 ;; window size
 (if (window-system) (set-frame-size (selected-frame) 120 40))
+
+;; show the time
+(display-time)
+
+;; y or n is sufficient for yes or no questions
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; use racket scheme
+(setq scheme-program-name "racket")
