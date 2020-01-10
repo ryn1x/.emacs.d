@@ -21,7 +21,7 @@
  '(custom-enabled-themes (quote (dracula)))
  '(custom-safe-themes
    (quote
-    ("947190b4f17f78c39b0ab1ea95b1e6097cc9202d55c73a702395fc817f899393" "274fa62b00d732d093fc3f120aca1b31a6bb484492f31081c1814a858e25c72e" "d91ef4e714f05fff2070da7ca452980999f5361209e679ee988e3c432df24347" default)))
+    ("28caf31770f88ffaac6363acfda5627019cac57ea252ceb2d41d98df6d87e240" "947190b4f17f78c39b0ab1ea95b1e6097cc9202d55c73a702395fc817f899393" "274fa62b00d732d093fc3f120aca1b31a6bb484492f31081c1814a858e25c72e" "d91ef4e714f05fff2070da7ca452980999f5361209e679ee988e3c432df24347" default)))
  '(fci-rule-color "#eee8d5")
  '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
  '(highlight-symbol-colors
@@ -149,9 +149,6 @@
 
 ;; colunm numbers
 (column-number-mode)
-
-;; line numbers
-(global-linum-mode 1)
 
 ;; c style
 (setq c-default-style "stroustrup"
