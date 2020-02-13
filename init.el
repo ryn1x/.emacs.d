@@ -64,7 +64,7 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (base16-theme flymake-racket racket-mode ripgrep fish-mode rainbow-delimiters ace-jump-mode cargo toml-mode flycheck-perl6 perl6-mode flycheck-rust racer rust-mode company)))
+    (geiser base16-theme ripgrep fish-mode rainbow-delimiters ace-jump-mode cargo toml-mode flycheck-perl6 perl6-mode flycheck-rust racer rust-mode company)))
  '(pos-tip-background-color "#eee8d5")
  '(pos-tip-foreground-color "#586e75")
  '(show-paren-mode t)
@@ -187,5 +187,13 @@
 ;; y or n is sufficient for yes or no questions
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; use racket scheme
-(setq scheme-program-name "racket")
+;; set geiser to use chez
+(setq geiser-active-implementations '(chez))
+
+;; easy geiser repl and eval buffer
+(add-hook 'geiser-mode-hook
+          (lambda ()
+            (local-set-key (quote [f5]) (quote run-geiser))))
+(add-hook 'geiser-mode-hook
+          (lambda ()
+            (local-set-key (quote [f6]) (quote geiser-eval-buffer))))
