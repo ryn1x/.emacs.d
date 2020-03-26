@@ -64,7 +64,7 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (geiser base16-theme ripgrep fish-mode rainbow-delimiters ace-jump-mode cargo toml-mode flycheck-perl6 perl6-mode flycheck-rust racer rust-mode company)))
+    (flycheck-haskell haskell-mode haskell-tab-indent geiser base16-theme ripgrep fish-mode rainbow-delimiters ace-jump-mode cargo toml-mode flycheck-perl6 perl6-mode flycheck-rust racer rust-mode company)))
  '(pos-tip-background-color "#eee8d5")
  '(pos-tip-foreground-color "#586e75")
  '(show-paren-mode t)
@@ -107,7 +107,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Hack" :foundry "SRC" :slant normal :weight normal :height 120 :width normal)))))
+ '(default ((t (:family "Hack" :foundry "SRC" :slant normal :weight normal :height 98 :width normal)))))
 
 ;; rustfmt on save
 (setq rust-format-on-save t)
