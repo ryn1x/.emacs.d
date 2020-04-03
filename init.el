@@ -64,7 +64,7 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (flycheck-haskell haskell-mode haskell-tab-indent geiser base16-theme ripgrep fish-mode rainbow-delimiters ace-jump-mode cargo toml-mode flycheck-perl6 perl6-mode flycheck-rust racer rust-mode company)))
+    (flycheck-golangci-lint go-mode flycheck-haskell haskell-mode haskell-tab-indent geiser base16-theme ripgrep fish-mode rainbow-delimiters ace-jump-mode cargo toml-mode flycheck-perl6 perl6-mode flycheck-rust racer rust-mode company)))
  '(pos-tip-background-color "#eee8d5")
  '(pos-tip-foreground-color "#586e75")
  '(show-paren-mode t)
@@ -197,3 +197,9 @@
 (add-hook 'geiser-mode-hook
           (lambda ()
             (local-set-key (quote [f6]) (quote geiser-eval-buffer))))
+
+;; 4 space tab width
+(setq-default tab-width 4)
+
+;; gofmt on safe
+(add-hook 'before-save-hook 'gofmt-before-save)
