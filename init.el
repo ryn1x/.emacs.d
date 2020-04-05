@@ -109,26 +109,20 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Hack" :foundry "SRC" :slant normal :weight normal :height 98 :width normal)))))
 
-;; rustfmt on save
-(setq rust-format-on-save t)
-
 ;; C-y, C-w, M-w work with OS clipboard
 (setq x-select-enable-clipboard t)
 
-;; rust rls and linter
-(use-package rust-mode
-    :mode "\\.rs\\'"
-    :init
-    (setq rust-format-on-save t))
+;; rust rls
 (use-package lsp-mode
-    :init
-    (add-hook 'prog-mode-hook 'lsp-mode)
-    :config
-    (use-package lsp-flycheck
-        :ensure f ; comes with lsp-mode
-        :after flycheck))
-(use-package lsp-rust
-    :after lsp-mode)
+  :ensure t
+  :commands (lsp lsp-deferred)
+  :hook (rust-mode . lsp-deferred))
+
+;; rust format on save
+(use-package rust-mode
+  :mode "\\.rs\\'"
+  :init
+  (setq rust-format-on-save t))
 
 ;; utf-8... probably not needed
 (set-language-environment "UTF-8")
@@ -189,9 +183,9 @@
 
 ;; go pls setup
 (use-package lsp-mode
-             :ensure t
-             :commands (lsp lsp-deferred)
-             :hook (go-mode . lsp-deferred))
+  :ensure t
+  :commands (lsp lsp-deferred)
+  :hook (go-mode . lsp-deferred))
 
 ;; Set up before-save hooks to format buffer and add/delete imports.
 ;; Make sure you don't have other gofmt/goimports hooks enabled.
@@ -202,25 +196,25 @@
 
 ;; Optional - provides fancier overlays.
 (use-package lsp-ui
-             :ensure t
-             :commands lsp-ui-mode)
+  :ensure t
+  :commands lsp-ui-mode)
 
 ;; Company mode is a standard completion package that works well with lsp-mode.
 (use-package company
-             :ensure t
-             :config
-             ;; Optionally enable completion-as-you-type behavior.
-             (setq company-idle-delay 0)
-             (setq company-minimum-prefix-length 1))
+  :ensure t
+  :config
+  ;; Optionally enable completion-as-you-type behavior.
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 1))
 
 ;; company-lsp integrates company mode completion with lsp-mode.
 ;; completion-at-point also works out of the box but doesn't support snippets.
 (use-package company-lsp
-             :ensure t
-             :commands company-lsp)
+  :ensure t
+  :commands company-lsp)
 
 ;; Optional - provides snippet support.
 (use-package yasnippet
-             :ensure t
-             :commands yas-minor-mode
-             :hook (go-mode . yas-minor-mode))
+  :ensure t
+  :commands yas-minor-mode
+  :hook (go-mode . yas-minor-mode))
