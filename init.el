@@ -64,7 +64,7 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (flycheck-golangci-lint go-mode flycheck-haskell haskell-mode haskell-tab-indent geiser base16-theme ripgrep fish-mode rainbow-delimiters ace-jump-mode cargo toml-mode flycheck-perl6 perl6-mode flycheck-rust racer rust-mode company)))
+    (flycheck go-mode use-package yasnippet lsp-ui company-lsp lsp-mode haskell-mode haskell-tab-indent geiser base16-theme ripgrep fish-mode rainbow-delimiters cargo toml-mode perl6-mode rust-mode company)))
  '(pos-tip-background-color "#eee8d5")
  '(pos-tip-foreground-color "#586e75")
  '(show-paren-mode t)
@@ -115,44 +115,30 @@
 ;; C-y, C-w, M-w work with OS clipboard
 (setq x-select-enable-clipboard t)
 
-;; rust autocomplete stuff
-(add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'racer-mode-hook #'eldoc-mode)
-(add-hook 'racer-mode-hook #'company-mode)
-(require 'rust-mode)
-(define-key rust-mode-map (kbd "<C-tab>") #'company-indent-or-complete-common)
-(setq company-tooltip-align-annotations t)
+;; rust rls and linter
+(use-package rust-mode
+    :mode "\\.rs\\'"
+    :init
+    (setq rust-format-on-save t))
+(use-package lsp-mode
+    :init
+    (add-hook 'prog-mode-hook 'lsp-mode)
+    :config
+    (use-package lsp-flycheck
+        :ensure f ; comes with lsp-mode
+        :after flycheck))
+(use-package lsp-rust
+    :after lsp-mode)
 
 ;; utf-8... probably not needed
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
-
-;; linter
-(global-flycheck-mode)
-(with-eval-after-load 'rust-mode
-  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 ;; highlight matching brackets
 (show-paren-mode 1)
 
 ;; cargo mode, M-x cargo-...
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
-
-;; ace jump mode major function
-(autoload
-  'ace-jump-mode
-  "ace-jump-mode"
-  "Emacs quick move minor mode"
-  t)
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-(autoload
-  'ace-jump-mode-pop-mark
-  "ace-jump-mode"
-  "Ace jump back:-)"
-  t)
-(eval-after-load "ace-jump-mode"
-  '(ace-jump-mode-enable-mark-sync))
-(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
 
 ;; rainbow delims in programming files
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
@@ -201,5 +187,40 @@
 ;; 4 space tab width
 (setq-default tab-width 4)
 
-;; gofmt on safe
-(add-hook 'before-save-hook 'gofmt-before-save)
+;; go pls setup
+(use-package lsp-mode
+             :ensure t
+             :commands (lsp lsp-deferred)
+             :hook (go-mode . lsp-deferred))
+
+;; Set up before-save hooks to format buffer and add/delete imports.
+;; Make sure you don't have other gofmt/goimports hooks enabled.
+(defun lsp-go-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+
+;; Optional - provides fancier overlays.
+(use-package lsp-ui
+             :ensure t
+             :commands lsp-ui-mode)
+
+;; Company mode is a standard completion package that works well with lsp-mode.
+(use-package company
+             :ensure t
+             :config
+             ;; Optionally enable completion-as-you-type behavior.
+             (setq company-idle-delay 0)
+             (setq company-minimum-prefix-length 1))
+
+;; company-lsp integrates company mode completion with lsp-mode.
+;; completion-at-point also works out of the box but doesn't support snippets.
+(use-package company-lsp
+             :ensure t
+             :commands company-lsp)
+
+;; Optional - provides snippet support.
+(use-package yasnippet
+             :ensure t
+             :commands yas-minor-mode
+             :hook (go-mode . yas-minor-mode))
