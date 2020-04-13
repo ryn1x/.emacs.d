@@ -64,7 +64,7 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (flycheck go-mode use-package yasnippet lsp-ui company-lsp lsp-mode haskell-mode haskell-tab-indent geiser base16-theme ripgrep fish-mode rainbow-delimiters cargo toml-mode perl6-mode rust-mode company)))
+    (pt flycheck go-mode use-package yasnippet lsp-ui company-lsp lsp-mode haskell-mode haskell-tab-indent geiser base16-theme ripgrep fish-mode rainbow-delimiters cargo toml-mode perl6-mode rust-mode company)))
  '(pos-tip-background-color "#eee8d5")
  '(pos-tip-foreground-color "#586e75")
  '(show-paren-mode t)
